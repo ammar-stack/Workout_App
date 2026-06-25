@@ -1,6 +1,6 @@
+import 'package:WorkoutApp/Data/workout_data.dart';
 import 'package:WorkoutApp/Screens/completionscreen.dart';
 import 'package:flutter/material.dart';
-import '../data/workout_data.dart';
 
 class WorkoutScreen extends StatefulWidget {
   final String workoutTitle;

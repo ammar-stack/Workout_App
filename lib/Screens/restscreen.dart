@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 
-class RunningScreen extends StatelessWidget {
-  const RunningScreen({super.key});
+class RestScreen extends StatelessWidget {
+  const RestScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final lime = Theme.of(context).colorScheme.primary;
-    final cyan = const Color(0xFF00CFDD);
+    final blue = const Color(0xFF4A9EFF);
 
     return Scaffold(
       body: SafeArea(
@@ -33,13 +32,13 @@ class RunningScreen extends StatelessWidget {
                   scale: value,
                   child: child,
                 ),
-                child: const Text('🏃', style: TextStyle(fontSize: 90)),
+                child: const Text('😴', style: TextStyle(fontSize: 90)),
               ),
 
               const SizedBox(height: 32),
 
               Text(
-                'Rest + Jog Day',
+                'Full Rest Day',
                 style: Theme.of(context).textTheme.displayLarge?.copyWith(
                   fontSize: 32,
                 ),
@@ -49,43 +48,43 @@ class RunningScreen extends StatelessWidget {
               const SizedBox(height: 12),
 
               Text(
-                'Active Recovery',
+                'You\'ve earned it.',
                 style: TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.w700,
-                  color: cyan,
+                  color: blue,
                   letterSpacing: 1,
                 ),
               ),
 
               const SizedBox(height: 24),
 
-              // Info cards
-              _InfoCard(
-                emoji: '🕐',
-                title: '10–15 min light jog',
-                subtitle: 'Keep your heart rate low and comfortable',
-                color: cyan,
+              // Rest pillars
+              _RestCard(
+                emoji: '🛌',
+                title: 'Recovery',
+                subtitle: 'Let your muscles rebuild and grow stronger',
+                color: blue,
               ),
               const SizedBox(height: 12),
-              _InfoCard(
-                emoji: '🌬️',
-                title: 'Breathing recovery',
-                subtitle: 'Focus on deep, rhythmic breathing throughout',
-                color: lime,
-              ),
-              const SizedBox(height: 12),
-              _InfoCard(
-                emoji: '💧',
-                title: 'Stay hydrated',
-                subtitle: 'Drink water before, during, and after',
+              _RestCard(
+                emoji: '😴',
+                title: 'Sleep',
+                subtitle: 'Aim for 7–9 hours of quality sleep tonight',
                 color: const Color(0xFF7B61FF),
               ),
+              const SizedBox(height: 12),
+              _RestCard(
+                emoji: '🥗',
+                title: 'Nutrition',
+                subtitle: 'Fuel your body with protein and whole foods',
+                color: const Color(0xFFC6FF00),
+              ),
 
-              const SizedBox(height: 16),
+              const SizedBox(height: 20),
 
               Text(
-                'Today is about letting your body recover\nwhile staying active, Boota.',
+                'Rest is not weakness — it\'s where the\ngrowth actually happens, Boota.',
                 textAlign: TextAlign.center,
                 style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                   fontSize: 15,
@@ -109,13 +108,13 @@ class RunningScreen extends StatelessWidget {
   }
 }
 
-class _InfoCard extends StatelessWidget {
+class _RestCard extends StatelessWidget {
   final String emoji;
   final String title;
   final String subtitle;
   final Color color;
 
-  const _InfoCard({
+  const _RestCard({
     required this.emoji,
     required this.title,
     required this.subtitle,
