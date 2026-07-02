@@ -1,7 +1,6 @@
 import 'package:WorkoutApp/Data/workout_data.dart';
-import 'package:WorkoutApp/Screens/runningscreen.dart';
+import 'package:WorkoutApp/Screens/walkscreen.dart';
 import 'package:WorkoutApp/Screens/workoutscreen.dart';
-import 'package:WorkoutApp/Screens/restscreen.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -9,17 +8,10 @@ class HomeScreen extends StatelessWidget {
 
   void _onDayTap(BuildContext context, String day, WorkoutType type) {
     switch (type) {
-      case WorkoutType.restJog:
+      case WorkoutType.walk:
         Navigator.of(context).push(
           MaterialPageRoute(
-            builder: (_) => const RunningScreen(),
-          ),
-        );
-        break;
-      case WorkoutType.rest:
-        Navigator.of(context).push(
-          MaterialPageRoute(
-            builder: (_) => const RestScreen(),
+            builder: (_) => const WalkScreen(),
           ),
         );
         break;
@@ -107,7 +99,7 @@ class _DayCard extends StatelessWidget {
     switch (t) {
       case WorkoutType.legs:
         return const Color(0xFF7B61FF);
-      case WorkoutType.restJog:
+      case WorkoutType.cardio:
         return const Color(0xFF00CFDD);
       case WorkoutType.chest:
         return const Color(0xFFC6FF00);
@@ -115,13 +107,13 @@ class _DayCard extends StatelessWidget {
         return const Color(0xFFFF6B35);
       case WorkoutType.fullBody:
         return const Color(0xFFFFD600);
-      case WorkoutType.rest:
+      case WorkoutType.walk:
         return const Color(0xFF4A9EFF);
     }
   }
 
   bool _isRestDay(WorkoutType t) =>
-      t == WorkoutType.rest || t == WorkoutType.restJog;
+      t == WorkoutType.walk || t == WorkoutType.cardio;
 
   @override
   Widget build(BuildContext context) {

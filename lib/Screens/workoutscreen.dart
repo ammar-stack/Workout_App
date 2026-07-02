@@ -182,7 +182,11 @@ class _ExerciseCard extends StatelessWidget {
             ),
           ),
 
-          const SizedBox(height: 24),
+          const SizedBox(height: 20),
+
+          _CategoryBadge(category: exercise.category),
+
+          const SizedBox(height: 10),
 
           Text(
             exercise.name,
@@ -196,13 +200,13 @@ class _ExerciseCard extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               _StatChip(
-                label: 'REPS',
+                label: exercise.isDuration ? 'MIN' : 'REPS',
                 value: '${exercise.reps}',
                 accentColor: lime,
               ),
               const SizedBox(width: 12),
               _StatChip(
-                label: 'SETS',
+                label: exercise.isDuration ? 'ROUNDS' : 'SETS',
                 value: '${exercise.sets}',
                 accentColor: const Color(0xFF7B61FF),
               ),
@@ -239,6 +243,44 @@ class _ExerciseCard extends StatelessWidget {
           ),
         );
       },
+    );
+  }
+}
+
+class _CategoryBadge extends StatelessWidget {
+  final ExerciseCategory category;
+  const _CategoryBadge({required this.category});
+
+  @override
+  Widget build(BuildContext context) {
+    final isCardio = category == ExerciseCategory.cardio;
+    final color = isCardio ? const Color(0xFF00CFDD) : const Color(0xFFC6FF00);
+    final label = isCardio ? 'CARDIO' : 'STRENGTH';
+    final emoji = isCardio ? '🏃' : '🏋️';
+
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 5),
+      decoration: BoxDecoration(
+        color: color.withOpacity(0.12),
+        borderRadius: BorderRadius.circular(20),
+        border: Border.all(color: color.withOpacity(0.3), width: 1),
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text(emoji, style: const TextStyle(fontSize: 12)),
+          const SizedBox(width: 6),
+          Text(
+            label,
+            style: TextStyle(
+              fontSize: 11,
+              fontWeight: FontWeight.w700,
+              letterSpacing: 1.2,
+              color: color,
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
