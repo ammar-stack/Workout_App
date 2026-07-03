@@ -1,7 +1,8 @@
 # Personal Workout App
 
-<img width="340" height="500" alt="Screenshot_1782107562" src="https://github.com/user-attachments/assets/6123bdca-c10a-4958-bc0c-7bdcb04ee018" />
-<img width="340" height="500" alt="Screenshot_1782395804" src="https://github.com/user-attachments/assets/cdfba4f3-030a-4472-a519-bfca32b67d99" />
-<img width="340" height="500" alt="Screenshot_1782107573" src="https://github.com/user-attachments/assets/83f3e1fb-22a3-42c2-aaf9-a26390b0af7b" />
-<img width="340" height="500" alt="Screenshot_1782107581" src="https://github.com/user-attachments/assets/7c012f83-4f3e-4c0c-a9ab-a42399149425" />
+<img width="340" height="500" alt="Screenshot_1783075121" src="https://github.com/user-attachments/assets/81ceeb29-667c-4750-ae37-8efe24993815" />
+<img width="340" height="500" alt="Screenshot_1783075111" src="https://github.com/user-attachments/assets/d78e23bf-b40d-4fda-a79f-0e530a247649" />
+<img width="340" height="500" alt="Screenshot_1783075097" src="https://github.com/user-attachments/assets/9db1be84-e96c-4a88-a15c-5656b60486ec" />
+<img width="340" height="500" alt="Screenshot_1783075088" src="https://github.com/user-attachments/assets/0623bc6f-3bd2-44ee-9f57-27563afdb553" />
+
 
