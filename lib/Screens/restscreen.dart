@@ -1,12 +1,13 @@
+import 'package:FitnessJungle/main.dart';
 import 'package:flutter/material.dart';
 
 class RestScreen extends StatelessWidget {
   const RestScreen({super.key});
-
+ 
   @override
   Widget build(BuildContext context) {
     final blue = const Color(0xFF4A9EFF);
-
+ 
     return Scaffold(
       body: SafeArea(
         child: Padding(
@@ -21,9 +22,9 @@ class RestScreen extends StatelessWidget {
                   onPressed: () => Navigator.of(context).pop(),
                 ),
               ),
-
+ 
               const Spacer(),
-
+ 
               TweenAnimationBuilder<double>(
                 tween: Tween(begin: 0.0, end: 1.0),
                 duration: const Duration(milliseconds: 700),
@@ -34,9 +35,9 @@ class RestScreen extends StatelessWidget {
                 ),
                 child: const Text('😴', style: TextStyle(fontSize: 90)),
               ),
-
+ 
               const SizedBox(height: 32),
-
+ 
               Text(
                 'Full Rest Day',
                 style: Theme.of(context).textTheme.displayLarge?.copyWith(
@@ -44,9 +45,9 @@ class RestScreen extends StatelessWidget {
                 ),
                 textAlign: TextAlign.center,
               ),
-
+ 
               const SizedBox(height: 12),
-
+ 
               Text(
                 'You\'ve earned it.',
                 style: TextStyle(
@@ -56,10 +57,9 @@ class RestScreen extends StatelessWidget {
                   letterSpacing: 1,
                 ),
               ),
-
+ 
               const SizedBox(height: 24),
-
-              // Rest pillars
+ 
               _RestCard(
                 emoji: '🛌',
                 title: 'Recovery',
@@ -80,9 +80,9 @@ class RestScreen extends StatelessWidget {
                 subtitle: 'Fuel your body with protein and whole foods',
                 color: const Color(0xFFC6FF00),
               ),
-
+ 
               const SizedBox(height: 20),
-
+ 
               Text(
                 'Rest is not weakness — it\'s where the\ngrowth actually happens, Boota.',
                 textAlign: TextAlign.center,
@@ -91,14 +91,14 @@ class RestScreen extends StatelessWidget {
                   height: 1.6,
                 ),
               ),
-
+ 
               const Spacer(),
-
+ 
               ElevatedButton(
                 onPressed: () => Navigator.of(context).pop(),
                 child: const Text('Back to Home'),
               ),
-
+ 
               const SizedBox(height: 28),
             ],
           ),
@@ -107,20 +107,20 @@ class RestScreen extends StatelessWidget {
     );
   }
 }
-
+ 
 class _RestCard extends StatelessWidget {
   final String emoji;
   final String title;
   final String subtitle;
   final Color color;
-
+ 
   const _RestCard({
     required this.emoji,
     required this.title,
     required this.subtitle,
     required this.color,
   });
-
+ 
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -152,7 +152,7 @@ class _RestCard extends StatelessWidget {
                   subtitle,
                   style: TextStyle(
                     fontSize: 12,
-                    color: Colors.white.withOpacity(0.5),
+                    color: context.appText.secondary,
                   ),
                 ),
               ],
@@ -163,3 +163,4 @@ class _RestCard extends StatelessWidget {
     );
   }
 }
+ 

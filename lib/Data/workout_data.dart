@@ -19,11 +19,11 @@ class Exercise {
 }
 
 // ── Cardio block (Jog + Jumping Jacks + Alternate Knees) ────────
-// Used on every training day, and alone on pure cardio days.
+// Used as the warm-up on every training day, and alone on pure cardio days.
 const List<Exercise> cardioExercises = [
   Exercise(
     name: 'Jogging',
-    imagePath: 'assets/images/jogging.png',
+    imagePath: 'assets/images/jogging.jpg',
     reps: 10,
     sets: 1,
     category: ExerciseCategory.cardio,
@@ -31,205 +31,271 @@ const List<Exercise> cardioExercises = [
   ),
   Exercise(
     name: 'Jumping Jacks',
-    imagePath: 'assets/images/jumping_jacks.png',
+    imagePath: 'assets/images/jumping_jacks.jpg',
     reps: 30,
     sets: 2,
     category: ExerciseCategory.cardio,
   ),
   Exercise(
     name: 'Alternate Knees',
-    imagePath: 'assets/images/alternate_knees.png',
+    imagePath: 'assets/images/alternate_knees.jpg',
     reps: 30,
     sets: 2,
     category: ExerciseCategory.cardio,
   ),
 ];
 
-// ── Monday: Legs Day (bodyweight) ────────────────────────────
-const List<Exercise> legsExercises = [
+// ── Monday: Leg Day — bodyweight block (no equipment) ───────────
+// From your gym sheet's "Legs" bodyweight rows. Tagged as cardio so it
+// groups with the warm-up under the 🏃 CARDIO WARM-UP section.
+const List<Exercise> legsCardioExercises = [
   Exercise(
     name: 'Lunges',
-    imagePath: 'assets/images/lunges.png',
+    imagePath: 'assets/images/lunges.jpg',
     reps: 15,
     sets: 3,
+    category: ExerciseCategory.cardio,
   ),
   Exercise(
     name: 'Reverse Lunges',
     imagePath: 'assets/images/reverse_lunges.jpg',
     reps: 15,
     sets: 3,
+    category: ExerciseCategory.cardio,
   ),
   Exercise(
     name: 'Side Lunges',
     imagePath: 'assets/images/side_lunges.jpg',
     reps: 15,
     sets: 3,
+    category: ExerciseCategory.cardio,
   ),
   Exercise(
     name: 'Wall Sit',
     imagePath: 'assets/images/wall_sit.jpg',
     reps: 15,
     sets: 3,
+    category: ExerciseCategory.cardio,
   ),
   Exercise(
     name: 'Calf Raises',
     imagePath: 'assets/images/calf_raises.jpg',
     reps: 20,
     sets: 3,
+    category: ExerciseCategory.cardio,
   ),
   Exercise(
     name: 'Glutes Bridge',
     imagePath: 'assets/images/glutes_bridge.jpg',
     reps: 15,
     sets: 3,
+    category: ExerciseCategory.cardio,
   ),
   Exercise(
     name: 'Alternating Step-Ups',
     imagePath: 'assets/images/alternating_step_ups.jpg',
     reps: 15,
     sets: 3,
+    category: ExerciseCategory.cardio,
   ),
 ];
 
-// ── Monday: Legs Day (gym equipment / weighted) ─────────────────
+// ── Monday: Leg Day — gym block (barbell / machine) ──────────────
 const List<Exercise> legsGymExercises = [
   Exercise(
     name: 'Barbell Back Squat',
     imagePath: 'assets/images/barbell_back_squat.jpg',
-    reps: 10,
+    reps: 8,
     sets: 4,
   ),
   Exercise(
-    name: 'Leg Press Machine',
-    imagePath: 'assets/images/leg_press_machine.jpg',
-    reps: 12,
+    name: 'Deadlift',
+    imagePath: 'assets/images/deadlift.jpg',
+    reps: 8,
     sets: 4,
   ),
   Exercise(
-    name: 'Romanian Deadlift',
-    imagePath: 'assets/images/romanian_deadlift.jpg',
-    reps: 10,
-    sets: 3,
-  ),
-  Exercise(
-    name: 'Leg Extension Machine',
+    name: 'Leg Extension (Machine)',
     imagePath: 'assets/images/leg_extension_machine.jpg',
     reps: 15,
     sets: 3,
   ),
+  
   Exercise(
-    name: 'Seated Leg Curl Machine',
-    imagePath: 'assets/images/seated_leg_curl_machine.jpg',
-    reps: 15,
-    sets: 3,
-  ),
-  Exercise(
-    name: 'Bulgarian Split Squat (Dumbbell)',
-    imagePath: 'assets/images/bulgarian_split_squat.jpg',
+    name: 'Romanian Deadlift (RDL)',
+    imagePath: 'assets/images/romanian_deadlift.jpg',
     reps: 10,
-    sets: 3,
+    sets: 4,
   ),
   Exercise(
-    name: 'Standing Calf Raise Machine',
-    imagePath: 'assets/images/standing_calf_raise_machine.jpg',
-    reps: 20,
-    sets: 3,
+    name: 'Leg Press (Vertical)',
+    imagePath: 'assets/images/leg_press_vertical.jpg',
+    reps: 12,
+    sets: 4,
   ),
+  Exercise(
+    name: 'Hip Thrusts',
+    imagePath: 'assets/images/hip_thrusts.jpg',
+    reps: 12,
+    sets: 4,
+  ),
+  
 ];
 
-// ── Wednesday: Chest Day (bodyweight) ────────────────────────
-const List<Exercise> chestExercises = [
+// ── Wednesday: Chest Day — bodyweight block (no equipment) ───────
+// From your gym sheet's "Chest" bodyweight rows. Tagged as cardio so it
+// groups with the warm-up under the 🏃 CARDIO WARM-UP section.
+const List<Exercise> chestCardioExercises = [
   Exercise(
     name: 'Pushup',
-    imagePath: 'assets/images/pushup.jpeg',
+    imagePath: 'assets/images/pushup.jpg',
     reps: 15,
     sets: 3,
+    category: ExerciseCategory.cardio,
   ),
   Exercise(
     name: 'Wide Grip Pushup',
     imagePath: 'assets/images/wide_grip_pushup.jpg',
     reps: 15,
     sets: 3,
+    category: ExerciseCategory.cardio,
   ),
   Exercise(
     name: 'Decline Pushup',
     imagePath: 'assets/images/decline_pushup.jpg',
     reps: 15,
     sets: 3,
+    category: ExerciseCategory.cardio,
   ),
   Exercise(
     name: 'Incline Pushup',
-    imagePath: 'assets/images/incline_pushup.png',
+    imagePath: 'assets/images/incline_pushup.jpg',
     reps: 15,
     sets: 3,
+    category: ExerciseCategory.cardio,
   ),
   Exercise(
     name: 'Pike Pushup',
-    imagePath: 'assets/images/pike_pushup.png',
+    imagePath: 'assets/images/pike_pushup.jpg',
     reps: 15,
     sets: 3,
+    category: ExerciseCategory.cardio,
+  ),
+  Exercise(
+    name: 'Plank Shoulder Tap',
+    imagePath: 'assets/images/plank_shoulder_tap.jpg',
+    reps: 15,
+    sets: 3,
+    category: ExerciseCategory.cardio,
+  ),
+  Exercise(
+    name: 'Arm Circle',
+    imagePath: 'assets/images/arm_circle.jpg',
+    reps: 15,
+    sets: 3,
+    category: ExerciseCategory.cardio,
   ),
   Exercise(
     name: 'Diamond Pushup',
-    imagePath: 'assets/images/diamond_pushup.png',
+    imagePath: 'assets/images/diamond_pushup.jpg',
     reps: 15,
     sets: 3,
+    category: ExerciseCategory.cardio,
   ),
   Exercise(
     name: 'Tricep Dip',
-    imagePath: 'assets/images/tricep_dip.png',
+    imagePath: 'assets/images/tricep_dip.jpg',
     reps: 15,
     sets: 3,
+    category: ExerciseCategory.cardio,
   ),
 ];
 
-// ── Wednesday: Chest Day (gym equipment / weighted) ──────────────
+// ── Wednesday: Chest Day — gym block (barbell / dumbbell / cable) ─
 const List<Exercise> chestGymExercises = [
   Exercise(
-    name: 'Barbell Bench Press',
+    name: 'Barbell Flat Bench Press',
     imagePath: 'assets/images/barbell_bench_press.jpg',
-    reps: 10,
+    reps: 8,
     sets: 4,
   ),
   Exercise(
-    name: 'Incline Dumbbell Press',
-    imagePath: 'assets/images/incline_dumbbell_press.jpg',
-    reps: 10,
+    name: 'Barbell Incline Bench Press',
+    imagePath: 'assets/images/barbell_incline_bench_press.jpg',
+    reps: 8,
     sets: 4,
   ),
   Exercise(
-    name: 'Flat Dumbbell Fly',
-    imagePath: 'assets/images/flat_dumbbell_fly.jpg',
-    reps: 12,
+    name: 'Dumbbell Flat Bench Press',
+    imagePath: 'assets/images/dumbbell_flat_bench_press.jpg',
+    reps: 10,
     sets: 3,
   ),
   Exercise(
-    name: 'Cable Crossover',
-    imagePath: 'assets/images/cable_crossover.jpg',
+    name: 'Dumbbell Incline Bench Press',
+    imagePath: 'assets/images/incline_dumbbell_press.jpg',
+    reps: 10,
+    sets: 3,
+  ),
+  Exercise(
+    name: 'Cable Fly',
+    imagePath: 'assets/images/cable_fly.jpg',
     reps: 15,
     sets: 3,
   ),
   Exercise(
-    name: 'Chest Press Machine',
-    imagePath: 'assets/images/chest_press_machine.jpg',
-    reps: 12,
-    sets: 3,
-  ),
-  Exercise(
-    name: 'Pec Deck Machine',
+    name: 'Machine Fly',
     imagePath: 'assets/images/pec_deck_machine.jpg',
     reps: 15,
     sets: 3,
   ),
   Exercise(
-    name: 'Weighted Dip',
-    imagePath: 'assets/images/weighted_dip.jpg',
+    name: 'Dumbbell Lateral Raise',
+    imagePath: 'assets/images/dumbbell_lateral_raise.jpg',
+    reps: 15,
+    sets: 3,
+  ),
+  Exercise(
+    name: 'Dumbbell Bench Press',
+    imagePath: 'assets/images/dumbbell_bench_press.jpg',
     reps: 10,
+    sets: 3,
+  ),
+  Exercise(
+    name: 'Standing Dumbbell Press',
+    imagePath: 'assets/images/standing_dumbbell_press.jpg',
+    reps: 10,
+    sets: 3,
+  ),
+  Exercise(
+    name: 'Dumbbell Tricep Kickback',
+    imagePath: 'assets/images/dumbbell_tricep_kickback.jpg',
+    reps: 15,
+    sets: 3,
+  ),
+  Exercise(
+    name: 'One Arm Dumbbell Rows',
+    imagePath: 'assets/images/one_arm_dumbbell_rows.jpg',
+    reps: 12,
+    sets: 3,
+  ),
+  Exercise(
+    name: 'Dumbbell Arnold Press',
+    imagePath: 'assets/images/dumbbell_arnold_press.jpg',
+    reps: 10,
+    sets: 3,
+  ),
+  Exercise(
+    name: 'Overhead Dumbbell Tricep Extension',
+    imagePath: 'assets/images/overhead_dumbbell_tricep_extension.jpg',
+    reps: 15,
     sets: 3,
   ),
 ];
 
-// ── Friday: Core & Abs Day (bodyweight) ──────────────────────
+// ── Friday: Core & Abs Day ────────────────────────────────────
+// No replacement list was given for this day, so the original
+// bodyweight + gym core exercises are kept.
 const List<Exercise> absExercises = [
   Exercise(
     name: 'Crunches',
@@ -239,19 +305,19 @@ const List<Exercise> absExercises = [
   ),
   Exercise(
     name: 'Toe Touch Crunch',
-    imagePath: 'assets/images/toe_touch_crunch.png',
+    imagePath: 'assets/images/toe_touch_crunch.jpg',
     reps: 15,
     sets: 3,
   ),
   Exercise(
     name: 'Leg Raise',
-    imagePath: 'assets/images/leg_raise.png',
+    imagePath: 'assets/images/leg_raise.jpg',
     reps: 15,
     sets: 3,
   ),
   Exercise(
     name: 'Flutter Kicks',
-    imagePath: 'assets/images/flutter_kicks.png',
+    imagePath: 'assets/images/flutter_kicks.jpg',
     reps: 15,
     sets: 3,
   ),
@@ -273,46 +339,14 @@ const List<Exercise> absExercises = [
     reps: 15,
     sets: 3,
   ),
-];
-
-// ── Friday: Core & Abs Day (gym equipment / weighted) ────────────
-const List<Exercise> absGymExercises = [
-  Exercise(
-    name: 'Cable Crunch',
-    imagePath: 'assets/images/cable_crunch.jpg',
-    reps: 15,
-    sets: 4,
-  ),
+  
   Exercise(
     name: 'Hanging Leg Raise',
     imagePath: 'assets/images/hanging_leg_raise.jpg',
     reps: 12,
     sets: 3,
   ),
-  Exercise(
-    name: 'Ab Wheel Rollout',
-    imagePath: 'assets/images/ab_wheel_rollout.jpg',
-    reps: 10,
-    sets: 3,
-  ),
-  Exercise(
-    name: 'Weighted Decline Sit-up',
-    imagePath: 'assets/images/weighted_decline_situp.jpg',
-    reps: 15,
-    sets: 3,
-  ),
-  Exercise(
-    name: 'Machine Crunch',
-    imagePath: 'assets/images/machine_crunch.jpg',
-    reps: 15,
-    sets: 3,
-  ),
-  Exercise(
-    name: 'Cable Woodchopper',
-    imagePath: 'assets/images/cable_woodchopper.jpg',
-    reps: 12,
-    sets: 3,
-  ),
+  
   Exercise(
     name: 'Weighted Russian Twist',
     imagePath: 'assets/images/weighted_russian_twist.jpg',
@@ -321,7 +355,8 @@ const List<Exercise> absGymExercises = [
   ),
 ];
 
-// ── Saturday: Cardio + Full Body Burn ─────────────────────────
+// ── Saturday: Full Body Burn ──────────────────────────────────
+// No replacement list was given for this day, so the original moves are kept.
 const List<Exercise> fullBodyExercises = [
   Exercise(
     name: 'Mountain Climbers',
@@ -362,18 +397,18 @@ const Map<String, WorkoutType> dayWorkoutMap = {
 };
 
 /// Returns the full exercise flow for a given day.
-/// - legs / chest / abs: cardio warm-up + bodyweight + gym/weighted exercises
+/// Every strength day starts with the shared cardio warm-up block,
+/// followed by that day's specific exercise list.
 /// - cardio (Tue/Thu): jog + jumping jacks + alternate knees only
-/// - fullBody (Saturday): cardio block + the 4 full body burn moves
 /// - walk (Sunday): no exercise list — handled by its own screen
 List<Exercise>? getExercisesFor(WorkoutType type) {
   switch (type) {
     case WorkoutType.legs:
-      return [...cardioExercises, ...legsExercises, ...legsGymExercises];
+      return [...cardioExercises, ...legsCardioExercises, ...legsGymExercises];
     case WorkoutType.chest:
-      return [...cardioExercises, ...chestExercises, ...chestGymExercises];
+      return [...cardioExercises, ...chestCardioExercises, ...chestGymExercises];
     case WorkoutType.abs:
-      return [...cardioExercises, ...absExercises, ...absGymExercises];
+      return [...cardioExercises, ...absExercises];
     case WorkoutType.fullBody:
       return [...cardioExercises, ...fullBodyExercises];
     case WorkoutType.cardio:
@@ -386,7 +421,7 @@ List<Exercise>? getExercisesFor(WorkoutType type) {
 String workoutLabel(WorkoutType type) {
   switch (type) {
     case WorkoutType.legs:
-      return 'Legs Day';
+      return 'Leg Day';
     case WorkoutType.cardio:
       return 'Cardio';
     case WorkoutType.chest:
@@ -396,7 +431,7 @@ String workoutLabel(WorkoutType type) {
     case WorkoutType.fullBody:
       return 'Full Body Burn';
     case WorkoutType.walk:
-      return 'Long Walk';
+      return 'Slow Walk';
   }
 }
 
@@ -426,7 +461,7 @@ String workoutSubtitle(WorkoutType type) {
     case WorkoutType.chest:
       return 'Cardio + Bodyweight + Gym Weights';
     case WorkoutType.abs:
-      return 'Cardio + Bodyweight + Gym Weights';
+      return 'Cardio + Core & Ab Exercises';
     case WorkoutType.fullBody:
       return 'Cardio + 4 full body moves';
     case WorkoutType.walk:

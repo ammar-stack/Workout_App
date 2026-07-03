@@ -1,65 +1,73 @@
-import 'package:WorkoutApp/Screens/HomeScreen.dart';
+import 'package:FitnessJungle/Screens/HomeScreen.dart';
+import 'package:FitnessJungle/Screens/usernamescreen.dart';
+import 'package:FitnessJungle/services/preference_services.dart';
 import 'package:flutter/material.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
-
+ 
   @override
   State<SplashScreen> createState() => _SplashScreenState();
 }
-
+ 
 class _SplashScreenState extends State<SplashScreen>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _scaleAnim;
   late Animation<double> _fadeAnim;
-
+ 
   @override
   void initState() {
     super.initState();
-
+ 
     _controller = AnimationController(
       vsync: this,
       duration: const Duration(milliseconds: 900),
     );
-
+ 
     _scaleAnim = Tween<double>(begin: 0.6, end: 1.0).animate(
       CurvedAnimation(parent: _controller, curve: Curves.elasticOut),
     );
-
+ 
     _fadeAnim = Tween<double>(begin: 0.0, end: 1.0).animate(
       CurvedAnimation(parent: _controller, curve: Curves.easeIn),
     );
-
+ 
     _controller.forward();
-
-    Future.delayed(const Duration(milliseconds: 2500), _goHome);
+ 
+    Future.delayed(const Duration(milliseconds: 2200), _goNext);
   }
-
-  void _goHome() {
+ 
+  Future<void> _goNext() async {
     if (!mounted) return;
+    final hasUsername = await PreferencesService.hasUsername();
+    if (!mounted) return;
+ 
+    final destination =
+        hasUsername ? const HomeScreen() : const UsernameScreen();
+ 
     Navigator.of(context).pushReplacement(
       PageRouteBuilder(
-        pageBuilder: (_, __, ___) => const HomeScreen(),
+        pageBuilder: (_, __, ___) => destination,
         transitionsBuilder: (_, animation, __, child) =>
             FadeTransition(opacity: animation, child: child),
         transitionDuration: const Duration(milliseconds: 500),
       ),
     );
   }
-
+ 
   @override
   void dispose() {
     _controller.dispose();
     super.dispose();
   }
-
+ 
   @override
   Widget build(BuildContext context) {
-    final lime = Theme.of(context).colorScheme.primary;
-
+    final colorScheme = Theme.of(context).colorScheme;
+ 
     return Scaffold(
-      backgroundColor: const Color(0xFF0F0F13),
+      backgroundColor: colorScheme.background,
       body: Center(
         child: FadeTransition(
           opacity: _fadeAnim,
@@ -72,27 +80,27 @@ class _SplashScreenState extends State<SplashScreen>
                   width: 100,
                   height: 100,
                   decoration: BoxDecoration(
-                    color: lime,
+                    color: colorScheme.primary,
                     shape: BoxShape.circle,
                   ),
-                  child: const Center(
+                  child: Center(
                     child: Text(
-                      'B',
+                      'F',
                       style: TextStyle(
                         fontSize: 56,
                         fontWeight: FontWeight.w900,
-                        color: Colors.black,
+                        color: colorScheme.onPrimary,
                         height: 1,
                       ),
                     ),
                   ),
                 ),
                 const SizedBox(height: 24),
-
+ 
                 Text(
-                  'BOOTA',
+                  'FitnessJungle',
                   style: Theme.of(context).textTheme.displayLarge?.copyWith(
-                    color: Colors.white,
+                    color: colorScheme.onBackground,
                     letterSpacing: 8,
                     fontSize: 38,
                   ),
@@ -104,7 +112,7 @@ class _SplashScreenState extends State<SplashScreen>
                     fontSize: 13,
                     fontWeight: FontWeight.w500,
                     letterSpacing: 6,
-                    color: lime,
+                    color: colorScheme.primary,
                   ),
                 ),
               ],
@@ -115,3 +123,4 @@ class _SplashScreenState extends State<SplashScreen>
     );
   }
 }
+ 

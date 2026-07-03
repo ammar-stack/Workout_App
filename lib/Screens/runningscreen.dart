@@ -1,13 +1,14 @@
+import 'package:FitnessJungle/main.dart';
 import 'package:flutter/material.dart';
 
 class RunningScreen extends StatelessWidget {
   const RunningScreen({super.key});
-
+ 
   @override
   Widget build(BuildContext context) {
     final lime = Theme.of(context).colorScheme.primary;
     final cyan = const Color(0xFF00CFDD);
-
+ 
     return Scaffold(
       body: SafeArea(
         child: Padding(
@@ -22,9 +23,9 @@ class RunningScreen extends StatelessWidget {
                   onPressed: () => Navigator.of(context).pop(),
                 ),
               ),
-
+ 
               const Spacer(),
-
+ 
               TweenAnimationBuilder<double>(
                 tween: Tween(begin: 0.0, end: 1.0),
                 duration: const Duration(milliseconds: 700),
@@ -35,9 +36,9 @@ class RunningScreen extends StatelessWidget {
                 ),
                 child: const Text('🏃', style: TextStyle(fontSize: 90)),
               ),
-
+ 
               const SizedBox(height: 32),
-
+ 
               Text(
                 'Rest + Jog Day',
                 style: Theme.of(context).textTheme.displayLarge?.copyWith(
@@ -45,9 +46,9 @@ class RunningScreen extends StatelessWidget {
                 ),
                 textAlign: TextAlign.center,
               ),
-
+ 
               const SizedBox(height: 12),
-
+ 
               Text(
                 'Active Recovery',
                 style: TextStyle(
@@ -57,10 +58,9 @@ class RunningScreen extends StatelessWidget {
                   letterSpacing: 1,
                 ),
               ),
-
+ 
               const SizedBox(height: 24),
-
-              // Info cards
+ 
               _InfoCard(
                 emoji: '🕐',
                 title: '10–15 min light jog',
@@ -81,9 +81,9 @@ class RunningScreen extends StatelessWidget {
                 subtitle: 'Drink water before, during, and after',
                 color: const Color(0xFF7B61FF),
               ),
-
+ 
               const SizedBox(height: 16),
-
+ 
               Text(
                 'Today is about letting your body recover\nwhile staying active, Boota.',
                 textAlign: TextAlign.center,
@@ -92,14 +92,14 @@ class RunningScreen extends StatelessWidget {
                   height: 1.6,
                 ),
               ),
-
+ 
               const Spacer(),
-
+ 
               ElevatedButton(
                 onPressed: () => Navigator.of(context).pop(),
                 child: const Text('Back to Home'),
               ),
-
+ 
               const SizedBox(height: 28),
             ],
           ),
@@ -108,20 +108,20 @@ class RunningScreen extends StatelessWidget {
     );
   }
 }
-
+ 
 class _InfoCard extends StatelessWidget {
   final String emoji;
   final String title;
   final String subtitle;
   final Color color;
-
+ 
   const _InfoCard({
     required this.emoji,
     required this.title,
     required this.subtitle,
     required this.color,
   });
-
+ 
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -153,7 +153,7 @@ class _InfoCard extends StatelessWidget {
                   subtitle,
                   style: TextStyle(
                     fontSize: 12,
-                    color: Colors.white.withOpacity(0.5),
+                    color: context.appText.secondary,
                   ),
                 ),
               ],
@@ -164,3 +164,4 @@ class _InfoCard extends StatelessWidget {
     );
   }
 }
+ 
