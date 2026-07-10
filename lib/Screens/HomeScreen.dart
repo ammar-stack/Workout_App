@@ -1,6 +1,6 @@
 import 'package:FitnessJungle/Data/workout_data.dart';
+import 'package:FitnessJungle/Screens/restscreen.dart';
 import 'package:FitnessJungle/Screens/settingscreen.dart';
-import 'package:FitnessJungle/Screens/walkscreen.dart';
 import 'package:FitnessJungle/Screens/workoutscreen.dart';
 import 'package:FitnessJungle/main.dart';
 import 'package:FitnessJungle/services/preference_services.dart';
@@ -101,21 +101,25 @@ class _HomeTabState extends State<_HomeTab> {
 
   void _onDayTap(BuildContext context, String day, WorkoutType type) {
     switch (type) {
-      case WorkoutType.walk:
+      case WorkoutType.rest:
         Navigator.of(context).push(
           MaterialPageRoute(
-            builder: (_) => const WalkScreen(),
+            builder: (_) => const RestScreen(),
           ),
         );
         break;
       default:
         final exercises = getExercisesFor(type);
         if (exercises == null) return;
+        final isCardioOnly = type == WorkoutType.sprintCardio ||
+            type == WorkoutType.enduranceCardio ||
+            type == WorkoutType.lightCardio;
         Navigator.of(context).push(
           MaterialPageRoute(
             builder: (_) => WorkoutScreen(
               workoutTitle: workoutLabel(type),
               exercises: exercises,
+              isCardioOnly: isCardioOnly,
             ),
           ),
         );
@@ -232,21 +236,24 @@ class _DayCard extends StatelessWidget {
     switch (t) {
       case WorkoutType.legs:
         return const Color(0xFF7B61FF);
-      case WorkoutType.cardio:
-        return isDark ? const Color(0xFF00CFDD) : const Color(0xFF0091A0);
-      case WorkoutType.chest:
+      case WorkoutType.chestTricepsShoulders:
         return isDark ? const Color(0xFFC6FF00) : const Color(0xFF6E8F00);
-      case WorkoutType.abs:
+      case WorkoutType.backAbsCore:
         return const Color(0xFFFF6B35);
-      case WorkoutType.fullBody:
-        return isDark ? const Color(0xFFFFD600) : const Color(0xFFAD7E00);
-      case WorkoutType.walk:
+      case WorkoutType.sprintCardio:
+        return isDark ? const Color(0xFF00CFDD) : const Color(0xFF0091A0);
+      case WorkoutType.enduranceCardio:
         return isDark ? const Color(0xFF4A9EFF) : const Color(0xFF1E6FD9);
+      case WorkoutType.lightCardio:
+        return isDark ? const Color(0xFFFFD600) : const Color(0xFFAD7E00);
+      case WorkoutType.rest:
+        return isDark ? const Color(0xFF8A8A99) : const Color(0xFF5C5C6B);
     }
   }
 
-  bool _isRestDay(WorkoutType t) =>
-      t == WorkoutType.walk || t == WorkoutType.cardio;
+  // Only Sunday's full rest day gets the muted "rest" card treatment now —
+  // Tue/Thu/Sat are real (if lighter) cardio workouts, not rest days.
+  bool _isRestDay(WorkoutType t) => t == WorkoutType.rest;
 
   @override
   Widget build(BuildContext context) {

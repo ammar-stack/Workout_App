@@ -6,25 +6,30 @@ import 'package:flutter/material.dart';
 class WorkoutScreen extends StatefulWidget {
   final String workoutTitle;
   final List<Exercise> exercises;
- 
+  // True for the pure cardio-only days (Sprint Session, Endurance Jog,
+  // Light Cardio Mix), where the whole session IS the cardio work rather
+  // than a warm-up in front of a lifting day.
+  final bool isCardioOnly;
+
   const WorkoutScreen({
     super.key,
     required this.workoutTitle,
     required this.exercises,
+    this.isCardioOnly = false,
   });
- 
+
   @override
   State<WorkoutScreen> createState() => _WorkoutScreenState();
 }
- 
+
 class _WorkoutScreenState extends State<WorkoutScreen>
     with SingleTickerProviderStateMixin {
   int _currentIndex = 0;
- 
+
   late AnimationController _slideController;
   late Animation<Offset> _slideAnim;
   late Animation<double> _fadeAnim;
- 
+
   @override
   void initState() {
     super.initState();
@@ -44,11 +49,11 @@ class _WorkoutScreenState extends State<WorkoutScreen>
     );
     _slideController.forward();
   }
- 
+
   Exercise get _current => widget.exercises[_currentIndex];
- 
+
   bool get _isLast => _currentIndex == widget.exercises.length - 1;
- 
+
   void _onNext() {
     if (_isLast) {
       Navigator.of(context).pushReplacement(
@@ -65,20 +70,20 @@ class _WorkoutScreenState extends State<WorkoutScreen>
       _slideController.forward();
     }
   }
- 
+
   @override
   void dispose() {
     _slideController.dispose();
     super.dispose();
   }
- 
+
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
     final lime = colorScheme.primary;
     final total = widget.exercises.length;
     final progress = (_currentIndex + 1) / total;
- 
+
     return Scaffold(
       body: SafeArea(
         child: Column(
@@ -114,7 +119,7 @@ class _WorkoutScreenState extends State<WorkoutScreen>
                 ],
               ),
             ),
- 
+
             Padding(
               padding: const EdgeInsets.fromLTRB(20, 10, 20, 0),
               child: ClipRRect(
@@ -127,33 +132,39 @@ class _WorkoutScreenState extends State<WorkoutScreen>
                 ),
               ),
             ),
- 
+
             const SizedBox(height: 16),
- 
-            // Makes it unmistakable that every training day starts with the
-            // cardio warm-up block before moving into the day's main lifts.
+
+            // Makes it unmistakable that every "Morning Gym" training day
+            // starts with the cardio warm-up block before moving into the
+            // day's main lifts. On pure cardio-only days (Sprint/Endurance/
+            // Light Mix), the session itself is the cardio work, so it's
+            // labeled as a session rather than a "warm-up".
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Align(
                 alignment: Alignment.centerLeft,
                 child: Text(
-                  _current.category == ExerciseCategory.cardio
-                      ? '🏃 CARDIO WARM-UP'
-                      : '🏋️ MAIN WORKOUT',
+                  widget.isCardioOnly
+                      ? '🏃 CARDIO SESSION'
+                      : (_current.category == ExerciseCategory.cardio
+                          ? '🏃 CARDIO WARM-UP'
+                          : '🏋️ MAIN WORKOUT'),
                   style: TextStyle(
                     fontSize: 12,
                     fontWeight: FontWeight.w700,
                     letterSpacing: 1.5,
-                    color: _current.category == ExerciseCategory.cardio
+                    color: widget.isCardioOnly ||
+                            _current.category == ExerciseCategory.cardio
                         ? const Color(0xFF00CFDD)
                         : lime,
                   ),
                 ),
               ),
             ),
- 
+
             const SizedBox(height: 8),
- 
+
             Expanded(
               child: FadeTransition(
                 opacity: _fadeAnim,
@@ -163,7 +174,7 @@ class _WorkoutScreenState extends State<WorkoutScreen>
                 ),
               ),
             ),
- 
+
             Padding(
               padding: const EdgeInsets.fromLTRB(20, 16, 20, 28),
               child: ElevatedButton(
@@ -177,16 +188,16 @@ class _WorkoutScreenState extends State<WorkoutScreen>
     );
   }
 }
- 
+
 class _ExerciseCard extends StatelessWidget {
   final Exercise exercise;
   const _ExerciseCard({required this.exercise});
- 
+
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
     final lime = colorScheme.primary;
- 
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: Column(
@@ -209,26 +220,27 @@ class _ExerciseCard extends StatelessWidget {
               ),
             ),
           ),
- 
+
           const SizedBox(height: 20),
- 
+
           _CategoryBadge(category: exercise.category),
- 
+
           const SizedBox(height: 10),
- 
+
           Text(
             exercise.name,
             textAlign: TextAlign.center,
             style: Theme.of(context).textTheme.headlineMedium,
           ),
- 
+
           const SizedBox(height: 14),
- 
+
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               _StatChip(
-                label: exercise.isDuration ? 'MIN' : 'REPS',
+                label: exercise.unitLabel ??
+                    (exercise.isDuration ? 'MIN' : 'REPS'),
                 value: '${exercise.reps}',
                 accentColor: lime,
               ),
@@ -244,7 +256,7 @@ class _ExerciseCard extends StatelessWidget {
       ),
     );
   }
- 
+
   Widget _buildImage(ColorScheme colorScheme) {
     return Image.asset(
       exercise.imagePath,
@@ -275,18 +287,18 @@ class _ExerciseCard extends StatelessWidget {
     );
   }
 }
- 
+
 class _CategoryBadge extends StatelessWidget {
   final ExerciseCategory category;
   const _CategoryBadge({required this.category});
- 
+
   @override
   Widget build(BuildContext context) {
     final isCardio = category == ExerciseCategory.cardio;
     final color = isCardio ? const Color(0xFF00CFDD) : const Color(0xFFC6FF00);
     final label = isCardio ? 'CARDIO' : 'STRENGTH';
     final emoji = isCardio ? '🏃' : '🏋️';
- 
+
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 5),
       decoration: BoxDecoration(
@@ -313,21 +325,20 @@ class _CategoryBadge extends StatelessWidget {
     );
   }
 }
- 
+
 class _StatChip extends StatelessWidget {
   final String label;
   final String value;
   final Color accentColor;
- 
+
   const _StatChip({
     required this.label,
     required this.value,
     required this.accentColor,
   });
- 
+
   @override
   Widget build(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
       decoration: BoxDecoration(
