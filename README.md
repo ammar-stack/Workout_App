@@ -7,7 +7,8 @@
 <img width="320" height="520" alt="Screenshot_1784315358" src="https://github.com/user-attachments/assets/7ecf78db-4323-4ad5-8d01-e70856d24597" />
 <img width="320" height="520" alt="Screenshot_1784315365" src="https://github.com/user-attachments/assets/67918d34-12e1-493a-a2b0-f2a950dad12d" />
 
-\n
+
+
 
 ##APK File
 https://drive.google.com/file/d/1Fzh6e7PkrTMAc7d4C8VcbnSITQsAhMUk/view?usp=sharing
