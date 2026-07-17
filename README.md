@@ -1,4 +1,4 @@
-# Personal Workout App
+# Personal Workout App (Gym + Cardio)
 
 <img width="320" height="520" alt="Screenshot_1783075121" src="https://github.com/user-attachments/assets/81ceeb29-667c-4750-ae37-8efe24993815" />
 <img width="320" height="520" alt="Screenshot_1783075111" src="https://github.com/user-attachments/assets/d78e23bf-b40d-4fda-a79f-0e530a247649" />
