@@ -19,11 +19,18 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   int _tabIndex = 0;
 
+  // Lets us reach into _HomeTab and force a username reload when
+  // Settings reports that it changed — needed because IndexedStack
+  // keeps _HomeTab alive, so its initState() never runs again.
+  final GlobalKey<_HomeTabState> _homeTabKey = GlobalKey<_HomeTabState>();
+
   // IndexedStack keeps both tabs alive so scroll position / state
   // isn't lost when switching back and forth.
   late final List<Widget> _tabs = [
-    _HomeTab(onUsernameChanged: () => setState(() {})),
-    const SettingsScreen(),
+    _HomeTab(key: _homeTabKey),
+    SettingsScreen(
+      onUsernameChanged: () => _homeTabKey.currentState?.reloadUsername(),
+    ),
   ];
 
   @override
@@ -100,8 +107,7 @@ const List<String> _weekdayOrder = [
 ];
 
 class _HomeTab extends StatefulWidget {
-  final VoidCallback onUsernameChanged;
-  const _HomeTab({required this.onUsernameChanged});
+  const _HomeTab({super.key});
 
   @override
   State<_HomeTab> createState() => _HomeTabState();
@@ -140,6 +146,11 @@ class _HomeTabState extends State<_HomeTab> with TickerProviderStateMixin {
     if (!mounted) return;
     setState(() => _username = (name == null || name.isEmpty) ? 'there' : name);
   }
+
+  /// Called from HomeScreen (via GlobalKey) after Settings saves a new
+  /// name, since IndexedStack keeps this widget alive and initState()
+  /// won't run again on its own.
+  Future<void> reloadUsername() => _loadUsername();
 
   @override
   void dispose() {

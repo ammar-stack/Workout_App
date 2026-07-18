@@ -5,7 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:FitnessJungle/services/preference_services.dart';
 
 class SettingsScreen extends StatefulWidget {
-  const SettingsScreen({super.key});
+  final VoidCallback? onUsernameChanged;
+  const SettingsScreen({super.key, this.onUsernameChanged});
  
   @override
   State<SettingsScreen> createState() => _SettingsScreenState();
@@ -46,6 +47,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
     if (trimmed.isEmpty) return;
     await PreferencesService.setUsername(trimmed);
     setState(() => _nameDirty = false);
+    widget.onUsernameChanged?.call();
     if (!mounted) return;
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(content: Text('Name updated ✅'), duration: Duration(seconds: 1)),
@@ -307,4 +309,3 @@ class _SettingsCard extends StatelessWidget {
     );
   }
 }
- 
